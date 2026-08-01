@@ -48,11 +48,13 @@ commentRoutes.post("/", async (req, res) => {
       "INSERT INTO comments (news_id, author, text) VALUES (?, ?, ?)",
       [news_id, commentAuthor, text],
     );
+    
+    const [newCommentRows] = await pool.query<RowDataPacket[]>(
+      "SELECT * FROM comments WHERE id = ?",
+      [result.insertId],
+    );
 
-    res.status(201).json({
-      message: "Comment created",
-      id: result.insertId,
-    });
+    res.status(201).json(newCommentRows[0]);
   } catch (error) {
     res.status(500).json({ error: "Error creating comment" });
   }

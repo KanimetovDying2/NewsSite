@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../api/axiosApi";
 import { useStore } from "../../store/useStore";
+import CommentSection from "../comments/CommentSection";
 
 const NewsDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,6 +32,8 @@ const NewsDetailPage = () => {
         />
       )}
       <div className="prose max-w-none">{currentNews.content}</div>
+
+      {id && <CommentSection newsId={Number(id)} />}
     </div>
   );
 };
