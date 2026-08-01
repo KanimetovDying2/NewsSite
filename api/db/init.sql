@@ -17,3 +17,7 @@ CREATE TABLE IF NOT EXISTS comments (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (news_id) REFERENCES news(id) ON DELETE CASCADE
 );
+
+INSERT INTO news (title, content, image_url) VALUES 
+('Первая хорошая новость', 'Мне она нравится!', NULL),
+('Это плохая новость', 'Мне не понравилась она!', NULL);
