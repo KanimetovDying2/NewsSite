@@ -56,6 +56,8 @@ newsRoutes.post("/", upload.single("image"), async (req, res) => {
 newsRoutes.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    await pool.query("DELETE FROM comments WHERE news_id = ?", [id]);
+
     const [result]: any = await pool.query("DELETE FROM news WHERE id = ?", [
       id,
     ]);
@@ -64,8 +66,8 @@ newsRoutes.delete("/:id", async (req, res) => {
       return res.status(404).json({ error: "News was not found" });
     }
 
-    res.json({ message: "News was deleted successfully" });
+    res.json({ message: "News and its comments were deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Eror with deleting news" });
+    res.status(500).json({ error: "Error with deleting news" });
   }
 });
