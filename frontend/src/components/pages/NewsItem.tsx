@@ -16,7 +16,7 @@ const NewsItem = ({ news, onDelete }: NewsItemProps) => {
 
       <div className="mt-4 flex gap-4">
         <Link to={`/news/${news.id}`} className="text-blue-600">
-          Read more
+          Read full post
         </Link>
         <button onClick={onDelete} className="text-red-600">
           Delete
