@@ -15,7 +15,7 @@ const CommentList = ({ comments }: CommentListProps) => {
 
       setComments(comments.filter((c) => c.id !== id));
     } catch (error) {
-      console.error("Ошибка при удалении:", error);
+      console.error("Delete error:", error);
     }
   };
 
